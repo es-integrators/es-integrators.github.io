@@ -11,8 +11,12 @@
     <style>
         #captcha-label { font-weight: bold; color: #333; }
         .error { color: red; font-size: 0.85rem; }
-        /* Style for disabled button */
-        .btn:disabled { cursor: not-allowed; filter: grayscale(1); }
+        /* Style for disabled button state */
+        .btn:disabled { 
+            cursor: not-allowed; 
+            filter: grayscale(1); 
+            opacity: 0.6 !important;
+        }
     </style>
 </head>
 <body>
@@ -66,4 +70,139 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Name *</label>
-                  <input type="text" class
+                  <input type="text" class="form-control" name="name" required>
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-6">  
+                <div class="form-group">
+                  <label>Email *</label>
+                  <input type="email" class="form-control" name="email" required>
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-12">   
+                <div class="form-group">
+                  <label>Subject</label>
+                  <input type="text" class="form-control" name="_subject">
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-12">  
+                <div class="form-group">
+                  <label>Message</label>
+                  <textarea class="form-control" name="message" rows="4"></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="form-group">
+                    <label id="captcha-label">Security Question: ? + ? =</label>
+                    <input type="text" class="form-control" id="captcha-answer" placeholder="Enter answer to enable submit" required autocomplete="off">
+                    <span class="input-highlight"></span>
+                </div>
+              </div>
+
+              <div class="col-sm-12">   
+                <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit-btn" disabled>Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid footerOuter">
+    <div class="row">
+        <div class="col footerLogo">
+            <img class="img-fluid" src="contact/footerlogo.png" alt="Emerald System Integrators">
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <h3 class="card-title">INDIA</h3>
+            <p class="card-text">Chennai</p>
+            <a href="mailto:admin@es-integrators.com">admin@es-integrators.com</a>
+          </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+              <h3 class="card-title">USA</h3>
+              <p class="card-text">Michigan</p>
+              <a href="mailto:admin@es-integrators.com">admin@es-integrators.com</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body socialMedia">
+                <h3 class="card-title">Social Media</h3>
+                <a class="linkedin" href="https://www.linkedin.com/in/es-integrators" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a class="twitter" href="https://twitter.com/es-integrators" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="copyrights">© 2020 Emerald System Integrators. All Rights Reserved.</div>
+        </div>
+    </div>
+</div>
+
+<script src="contact/jquery-3.5.1.slim.min.js.download"></script> 
+<script type="text/javascript" src="contact/jquery-1.11.0.js.download"></script> 
+<script src="contact/bootstrap.bundle.min.js.download"></script> 
+<script src="contact/jquery.validate.min.js.download"></script> 
+
+<script>
+$(document).ready(function () {
+    // 1. Setup Captcha Logic
+    var num1 = Math.floor(Math.random() * 10) + 1;
+    var num2 = Math.floor(Math.random() * 5) + 1;
+    var correctAnswer = num1 + num2;
+    $('#captcha-label').text('Security Question: ' + num1 + ' + ' + num2 + ' = ? *');
+
+    // 2. Real-time Answer Check to enable button
+    $('#captcha-answer').on('input keyup change', function() {
+        var val = parseInt($(this).val());
+        if (val === correctAnswer) {
+            $('#submit-btn').prop('disabled', false);
+        } else {
+            $('#submit-btn').prop('disabled', true);
+        }
+    });
+
+    // 3. Form Validation Plugin
+    $('#contact').validate({
+        rules: {
+            name: { required: true },
+            email: { required: true, email: true }
+        },
+        messages: {
+            name: { required: 'Enter your Name' },
+            email: { required: 'Enter your valid Email Id' }
+        },
+        submitHandler: function (form) {
+            form.submit(); // Validated and captcha correct, send to FormSubmit
+        }
+    });
+
+    // Sticky Navbar Logic
+    if ($(window).width() > 992) {
+        $(window).scroll(function(){  
+           if ($(this).scrollTop() > 40) {
+              $('#navbar').addClass("fixed-top");
+              $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
+            } else {
+              $('#navbar').removeClass("fixed-top");
+              $('body').css('padding-top', '0');
+            }   
+        });
+    }
+});
+</script>
+
+</body>
+</html>
