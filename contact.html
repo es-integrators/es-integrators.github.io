@@ -4,104 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Emerald System Integrators | Contact</title>
+    
     <link href="contact/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="contact/all.css">
-    
+    <link rel="stylesheet" href="contact/slick.css">
+    <link href="contact/vian.css" rel="stylesheet">
+
     <style>
-        /* CHATBOT STYLING */
-        #emerald-chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        #chat-circle { background: #2e7d32; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
-        #chat-circle:hover { transform: scale(1.1); }
-        #chat-box { display: none; position: absolute; bottom: 85px; right: 0; width: 340px; height: 480px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); flex-direction: column; overflow: hidden; border: 1px solid #e0e0e0; }
-        .chat-header { background: #2e7d32; color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        #chat-logs { flex: 1; padding: 15px; overflow-y: auto; background: #f7f7f7; display: flex; flex-direction: column; gap: 10px; }
-        .chat-msg { padding: 10px 14px; border-radius: 12px; font-size: 14px; max-width: 80%; line-height: 1.5; }
-        .user { background: #2e7d32; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .bot { background: #ffffff; color: #333; align-self: flex-start; border: 1px solid #ddd; border-bottom-left-radius: 2px; }
-        .chat-input-row { padding: 12px; border-top: 1px solid #eee; display: flex; background: #fff; }
-        #chat-input { flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 25px; outline: none; font-size: 14px; }
-        #chat-submit { background: #2e7d32; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        /* CHATBOT WIDGET STYLES - Added to your page */
+        #emerald-chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: sans-serif; }
+        #chat-circle { background: #2e7d32; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 24px; }
+        #chat-box { display: none; position: absolute; bottom: 80px; right: 0; width: 320px; height: 450px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
+        .chat-header { background: #2e7d32; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        #chat-logs { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
+        .chat-msg { padding: 8px 12px; border-radius: 10px; font-size: 14px; max-width: 85%; }
+        .user { background: #2e7d32; color: white; align-self: flex-end; }
+        .bot { background: #eee; color: #333; align-self: flex-start; border: 1px solid #ddd; }
+        .chat-input-row { padding: 10px; border-top: 1px solid #eee; display: flex; background: white; }
+        #chat-input { flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 20px; outline: none; }
+        #chat-submit { background: #2e7d32; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; margin-left: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div id="emerald-chat-widget">
-        <div id="chat-circle">💬</div>
-        <div id="chat-box">
-            <div class="chat-header">
-                <span>Emerald Support</span>
-                <span id="chat-close" style="cursor:pointer; font-size:22px;">&times;</span>
-            </div>
-            <div id="chat-logs">
-                <div class="chat-msg bot">Hi! I can help with our hours and integration services. What's on your mind?</div>
-            </div>
-            <div class="chat-input-row">
-                <input type="text" id="chat-input" placeholder="Ask a question...">
-                <button id="chat-submit">➔</button>
-            </div>
-        </div>
+<div id="navbar">
+  <div class="container">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light"> 
+        <a class="navbar-brand" href="index.html"> <img src="contact/logo.jpg" class="img-fluid"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"> <i class="fas fa-bars"></i> </button>
+      </nav>
+    </header>
+  </div>
+</div>
+
+<div class="container mt-5">
+    <h1>Contact Us</h1>
+    <p>Please use the form below to reach out to Emerald System Integrators.</p>
     </div>
 
-    <script>
-        // --- CONFIGURATION ---
-        const SCRIPT_URL = "YOUR_EXEC_URL_HERE"; // PASTE YOUR /exec URL HERE
-        const TOKEN = "emerald-secure-123";
+<div id="emerald-chat-widget">
+    <div id="chat-circle">💬</div>
+    <div id="chat-box">
+        <div class="chat-header">
+            <span>Emerald Assistant</span>
+            <span id="chat-close" style="cursor:pointer;">&times;</span>
+        </div>
+        <div id="chat-logs">
+            <div class="chat-msg bot">Hello! How can I help you today?</div>
+        </div>
+        <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="chat-submit">➔</button>
+        </div>
+    </div>
+</div>
 
-        const chatCircle = document.getElementById('chat-circle');
-        const chatBox = document.getElementById('chat-box');
-        const chatClose = document.getElementById('chat-close');
-        const chatInput = document.getElementById('chat-input');
-        const chatSubmit = document.getElementById('chat-submit');
-        const chatLogs = document.getElementById('chat-logs');
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVPd2KJEvPWgLG32mjvPiUrX5rnYC3LQpCnj0ZKp62FsV1-nA9gl8-0TuwZmyPtPFm4A/exec"; // PASTE YOUR URL
+    const TOKEN = "AKfycbxVPd2KJEvPWgLG32mjvPiUrX5rnYC3LQpCnj0ZKp62FsV1-nA9gl8-0TuwZmyPtPFm4A";
 
-        // Toggle Open/Close
-        chatCircle.onclick = () => {
-            chatBox.style.display = 'flex';
-            chatCircle.style.display = 'none';
-        };
-        chatClose.onclick = () => {
-            chatBox.style.display = 'none';
-            chatCircle.style.display = 'flex';
-        };
+    const circle = document.getElementById('chat-circle');
+    const box = document.getElementById('chat-box');
+    const close = document.getElementById('chat-close');
+    const input = document.getElementById('chat-input');
+    const submit = document.getElementById('chat-submit');
+    const logs = document.getElementById('chat-logs');
 
-        async function handleChat() {
-            const val = chatInput.value.trim();
-            if (!val) return;
+    circle.onclick = () => { box.style.display = 'flex'; circle.style.display = 'none'; };
+    close.onclick = () => { box.style.display = 'none'; circle.style.display = 'flex'; };
 
-            addMsg(val, 'user');
-            chatInput.value = '';
-            const loading = addMsg('...', 'bot');
+    async function sendToBot() {
+        const text = input.value.trim();
+        if(!text) return;
+        addMsg(text, 'user');
+        input.value = '';
+        const loader = addMsg('...', 'bot');
 
-            try {
-                // Using 'text/plain' bypasses CORS preflight checks
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({ question: val, token: TOKEN }),
-                    redirect: 'follow'
-                });
-
-                const result = await response.json();
-                document.getElementById(loading).innerText = result.answer || "I'm sorry, I missed that. Could you repeat?";
-            } catch (err) {
-                document.getElementById(loading).innerText = "The assistant is offline. Please try again later.";
-                console.error("CORS or Script Error:", err);
-            }
+        try {
+            const resp = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ question: text, token: TOKEN }),
+                redirect: 'follow'
+            });
+            const data = await resp.json();
+            document.getElementById(loader).innerText = data.answer || "I couldn't get an answer.";
+        } catch (e) {
+            document.getElementById(loader).innerText = "Error: Please check your script deployment.";
         }
+    }
 
-        function addMsg(text, type) {
-            const id = 'msg-' + Date.now();
-            const div = document.createElement('div');
-            div.id = id;
-            div.className = `chat-msg ${type}`;
-            div.innerText = text;
-            chatLogs.appendChild(div);
-            chatLogs.scrollTop = chatLogs.scrollHeight;
-            return id;
-        }
+    function addMsg(txt, type) {
+        const id = 'msg-' + Date.now();
+        const d = document.createElement('div');
+        d.id = id;
+        d.className = `chat-msg ${type}`;
+        d.innerText = txt;
+        logs.appendChild(d);
+        logs.scrollTop = logs.scrollHeight;
+        return id;
+    }
 
-        chatSubmit.onclick = handleChat;
-        chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleChat(); };
-    </script>
+    submit.onclick = sendToBot;
+    input.onkeypress = (e) => { if(e.key === 'Enter') sendToBot(); };
+</script>
+
 </body>
 </html>
