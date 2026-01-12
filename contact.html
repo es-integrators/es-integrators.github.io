@@ -11,21 +11,12 @@
     <style>
         #captcha-label { font-weight: bold; color: #333; }
         .error { color: red; font-size: 0.85rem; }
-        .btn:disabled { cursor: not-allowed; filter: grayscale(1); opacity: 0.6 !important; }
-
-        /* --- CHATBOT WIDGET STYLES --- */
-        #emerald-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 10000; font-family: 'Segoe UI', Arial, sans-serif; }
-        #chat-circle { background: #2e7d32; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 24px; transition: transform 0.2s; }
-        #chat-circle:hover { transform: scale(1.1); }
-        #chat-box { display: none; position: absolute; bottom: 75px; right: 0; width: 320px; height: 450px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
-        .chat-header { background: #2e7d32; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        #chat-logs { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
-        .chat-msg { padding: 10px 14px; border-radius: 12px; font-size: 14px; max-width: 85%; line-height: 1.4; }
-        .user { background: #2e7d32; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .bot { background: white; color: #333; align-self: flex-start; border: 1px solid #ddd; border-bottom-left-radius: 2px; }
-        .chat-input-row { padding: 12px; border-top: 1px solid #eee; display: flex; background: white; }
-        #chat-input { flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 25px; outline: none; font-size: 14px; }
-        #chat-submit { background: #2e7d32; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        /* Style for disabled button state */
+        .btn:disabled { 
+            cursor: not-allowed; 
+            filter: grayscale(1); 
+            opacity: 0.6 !important;
+        }
     </style>
 </head>
 <body>
@@ -33,120 +24,239 @@
 <div id="navbar">
   <div class="container">
     <header>
-      <nav class="navbar navbar-expand-md navbar-light"> 
+      <nav class="navbar navbar-expand-md navbar-light" data-toggle="sticky-onscroll"> 
         <a class="navbar-brand" href="index.html"> <img src="contact/logo.jpg" class="img-fluid"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"> <i class="fas fa-bars"></i> </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="about-us.html">About us</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="services.html">Services</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="clients.html">Clients</a> </li>
+            <li class="nav-item active"> <a class="nav-link" href="contact.html">Contact</a> </li>
+          </ul>
+        </div>
       </nav>
     </header>
   </div>
 </div>
 
-<section class="contact-area mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h2>Contact Us</h2>
-                <p>Please use the form below to reach out to Emerald System Integrators.</p>
-                
-                <form id="contact-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="captcha-label"></label>
-                        <input type="text" class="form-control" id="captcha-input" placeholder="Enter the sum" required>
-                    </div>
-                    <button type="submit" class="btn btn-success" id="submit-form">Send Message</button>
-                </form>
+<div class="jumbotron">
+ <iframe src="contact/embed.html" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-12 aboutLeftImg"> 
+        <img class="img-fluid" src="contact/contact.jpg" alt="Contact Us">
+        <div class="contactInfo">
+          <h2>Contact</h2>
+          <h4>Emerald System Integrators</h4>
+          <p class="big"><i class="fa fa-map-marker"></i> Chennai, India</p>
+          <p class="big"><i class="fa fa-envelope"></i> <a style="color: #fff;" href="mailto:admin@es-integrators.com">admin@es-integrators.com</a></p>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-12">
+        <div class="contactFormOuter"> 
+          <h2>Send us a message</h2>
+          
+          <form method="POST" action="https://formsubmit.co/admin@es-integrators.com" class="cool-b4-form" id="contact">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://www.es-integrators.com/contact.html">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Name *</label>
+                  <input type="text" class="form-control" name="name" required>
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-6">  
+                <div class="form-group">
+                  <label>Email *</label>
+                  <input type="email" class="form-control" name="email" required>
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-12">   
+                <div class="form-group">
+                  <label>Subject</label>
+                  <input type="text" class="form-control" name="_subject">
+                  <span class="input-highlight"></span>
+                </div>
+              </div>
+              <div class="col-sm-12">  
+                <div class="form-group">
+                  <label>Message</label>
+                  <textarea class="form-control" name="message" rows="4"></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="form-group">
+                    <label id="captcha-label">Security Question: ? + ? =</label>
+                    <input type="text" class="form-control" id="captcha-answer" placeholder="Enter answer to enable submit" required autocomplete="off">
+                    <span class="input-highlight"></span>
+                </div>
+              </div>
+
+              <div class="col-sm-12">   
+                <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit-btn" disabled>Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid footerOuter">
+    <div class="row">
+        <div class="col footerLogo">
+            <img class="img-fluid" src="contact/footerlogo.png" alt="Emerald System Integrators">
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <h3 class="card-title">INDIA</h3>
+            <p class="card-text">Chennai</p>
+            <a href="mailto:admin@es-integrators.com">admin@es-integrators.com</a>
+          </div>
+        </div>
+        <div class="col">
+            <div class="card-body">
+              <h3 class="card-title">USA</h3>
+              <p class="card-text">Michigan</p>
+              <a href="mailto:admin@es-integrators.com">admin@es-integrators.com</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-body socialMedia">
+                <h3 class="card-title">Social Media</h3>
+                <a class="linkedin" href="https://www.linkedin.com/in/es-integrators" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a class="twitter" href="https://twitter.com/es-integrators" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
-</section>
-
-<div id="emerald-chat-widget">
-    <div id="chat-circle">💬</div>
-    <div id="chat-box">
-        <div class="chat-header">
-            <span>Emerald AI Support</span>
-            <span id="chat-close" style="cursor:pointer; font-size:24px;">&times;</span>
-        </div>
-        <div id="chat-logs">
-            <div class="chat-msg bot">Hi! I'm the Emerald assistant. I can answer questions about our hours or automation services while you fill out the form!</div>
-        </div>
-        <div class="chat-input-row">
-            <input type="text" id="chat-input" placeholder="Ask a question...">
-            <button id="chat-submit">➔</button>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="copyrights">© 2020 Emerald System Integrators. All Rights Reserved.</div>
         </div>
     </div>
 </div>
 
-<script>
-    // Example of your original captcha logic
-    let num1 = Math.floor(Math.random() * 10);
-    let num2 = Math.floor(Math.random() * 10);
-    document.getElementById('captcha-label').innerText = `What is ${num1} + ${num2}?`;
+<div id="chat-widget-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Segoe UI', Tahoma, sans-serif;">
+    <button id="chat-toggle-btn" style="background-color: #2e7d32; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+        </svg>
+    </button>
 
-    document.getElementById('contact-form').onsubmit = function(e) {
-        const answer = parseInt(document.getElementById('captcha-input').value);
-        if (answer !== (num1 + num2)) {
-            e.preventDefault();
-            alert("Captcha incorrect. Please try again.");
-        }
+    <div id="chat-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; max-height: 500px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; border: 1px solid #e0e0e0;">
+        <div style="background-color: #2e7d32; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <span>Emerald Systems Support</span>
+            <button id="close-chat" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px;">&times;</button>
+        </div>
+        <div id="chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; background-color: #f9f9f9; height: 350px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: #e8f5e9; padding: 10px; border-radius: 10px; align-self: flex-start; max-width: 85%; font-size: 14px; border: 1px solid #c8e6c9;">
+                Hello! I'm the Emerald assistant. Ask me about our <b>hours</b> or <b>services</b>!
+            </div>
+        </div>
+        <div style="padding: 10px; border-top: 1px solid #eee; display: flex; background: white;">
+            <input type="text" id="chat-user-input" placeholder="Type a message..." style="flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 20px; outline: none; font-size: 14px;">
+            <button id="send-chat-btn" style="background: #2e7d32; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 8px; cursor: pointer;">➔</button>
+        </div>
+    </div>
+</div>
+
+<script src="contact/jquery-3.5.1.slim.min.js.download"></script> 
+<script type="text/javascript" src="contact/jquery-1.11.0.js.download"></script> 
+<script src="contact/bootstrap.bundle.min.js.download"></script> 
+<script src="contact/jquery.validate.min.js.download"></script> 
+
+<script>
+$(document).ready(function () {
+    // 1. Captcha Setup
+    var num1 = Math.floor(Math.random() * 10) + 1;
+    var num2 = Math.floor(Math.random() * 5) + 1;
+    var correctAnswer = num1 + num2;
+    $('#captcha-label').text('Security Question: ' + num1 + ' + ' + num2 + ' = ? *');
+
+    $('#captcha-answer').on('input keyup change', function() {
+        var val = parseInt($(this).val());
+        $('#submit-btn').prop('disabled', val !== correctAnswer);
+    });
+
+    // 2. Chatbot Logic
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVPd2KJEvPWgLG32mjvPiUrX5rnYC3LQpCnj0ZKp62FsV1-nA9gl8-0TuwZmyPtPFm4A/exec"; // PASTE URL HERE
+    const SECRET_TOKEN = "AKfycbxVPd2KJEvPWgLG32mjvPiUrX5rnYC3LQpCnj0ZKp62FsV1-nA9gl8-0TuwZmyPtPFm4A";
+
+    const toggleBtn = document.getElementById('chat-toggle-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const closeBtn = document.getElementById('close-chat');
+    const sendBtn = document.getElementById('send-chat-btn');
+    const userInput = document.getElementById('chat-user-input');
+    const messagesContainer = document.getElementById('chat-messages');
+
+    toggleBtn.onclick = () => {
+        chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
+        if(chatWindow.style.display === 'flex') userInput.focus();
     };
-</script>
+    closeBtn.onclick = () => chatWindow.style.display = 'none';
 
-<script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyUhYHt07R4il7r-MIpMZMVmpknpTa5BQShi0IU6BN/dev"; 
-    const TOKEN = "AKfycbwyUhYHt07R4il7r-MIpMZMVmpknpTa5BQShi0IU6BN";
+    async function handleSend() {
+        const text = userInput.value.trim();
+        if (!text) return;
 
-    const circle = document.getElementById('chat-circle');
-    const box = document.getElementById('chat-box');
-    const close = document.getElementById('chat-close');
-    const input = document.getElementById('chat-input');
-    const submit = document.getElementById('chat-submit');
-    const logs = document.getElementById('chat-logs');
-
-    circle.onclick = () => { box.style.display = 'flex'; circle.style.display = 'none'; };
-    close.onclick = () => { box.style.display = 'none'; circle.style.display = 'flex'; };
-
-    async function sendChat() {
-        const text = input.value.trim();
-        if(!text) return;
-        addMsg(text, 'user');
-        input.value = '';
-        const loadingId = addMsg('...', 'bot');
+        appendMessage(text, 'user');
+        userInput.value = '';
+        const loadingId = appendMessage('Thinking...', 'bot');
 
         try {
             const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain' },
-                body: JSON.stringify({ question: text, token: TOKEN }),
-                redirect: 'follow'
+                method: "POST",
+                // Sent as plain text to bypass CORS blocks
+                headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+                body: JSON.stringify({ question: text, token: SECRET_TOKEN }),
+                redirect: "follow"
             });
+
             const data = await response.json();
-            document.getElementById(loadingId).innerText = data.answer || "I'm having trouble thinking.";
-        } catch (e) {
-            document.getElementById(loadingId).innerText = "Assistant offline.";
+            document.getElementById(loadingId).innerText = data.answer || "I'm sorry, I couldn't process that.";
+        } catch (error) {
+            document.getElementById(loadingId).innerText = "Assistant offline. Please ensure deployment is set to 'Anyone'.";
+            console.error(error);
         }
     }
 
-    function addMsg(txt, type) {
+    function appendMessage(text, sender) {
         const id = 'msg-' + Date.now();
-        const div = document.createElement('div');
-        div.id = id;
-        div.className = `chat-msg ${type}`;
-        div.innerText = txt;
-        logs.appendChild(div);
-        logs.scrollTop = logs.scrollHeight;
+        const msgDiv = document.createElement('div');
+        msgDiv.id = id;
+        msgDiv.style.padding = "10px";
+        msgDiv.style.borderRadius = "10px";
+        msgDiv.style.maxWidth = "85%";
+        msgDiv.style.fontSize = "14px";
+        msgDiv.style.alignSelf = sender === 'user' ? "flex-end" : "flex-start";
+        msgDiv.style.backgroundColor = sender === 'user' ? "#2e7d32" : "#f1f1f1";
+        msgDiv.style.color = sender === 'user' ? "white" : "#333";
+        if (sender !== 'user') msgDiv.style.border = "1px solid #ddd";
+
+        msgDiv.innerText = text;
+        messagesContainer.appendChild(msgDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
         return id;
     }
 
-    submit.onclick = sendChat;
-    input.onkeypress = (e) => { if(e.key === 'Enter') sendChat(); };
+    sendBtn.onclick = handleSend;
+    userInput.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
+});
 </script>
-
 </body>
 </html>
